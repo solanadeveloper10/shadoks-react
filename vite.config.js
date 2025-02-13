@@ -1,28 +1,44 @@
+import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import viteImagemin from 'vite-plugin-imagemin';
+import imagemin from 'imagemin';
+import imageminWebp from 'imagemin-webp';
+import fs from 'fs';
+import path from 'path';
 
-export default {
+export default defineConfig({
   plugins: [
     react(),
-    viteImagemin({
-      webp: {
-        quality: 80,
-      },
-    }),
     {
-      name: 'replace-images-with-webp',
-      enforce: 'post',
+      name: 'webp-conversion',
       apply: 'build',
-      transformIndexHtml(html) {
-        return html.replace(/\.(png|jpg|jpeg)/g, '.webp'); // Replace in HTML
-      },
-      transform(code, id) {
-        if (/\.(js|css|html|tsx|jsx)$/.test(id)) {
-          return code.replace(/\.(png|jpg|jpeg)/g, '.webp'); // Replace in JS, CSS, TSX, JSX
+      async generateBundle(options, bundle) {
+        const imagesDir = path.resolve(__dirname, 'public');
+        const distDir = path.resolve(__dirname, 'dist'); // The folder where optimized images will go
+
+        // Ensure output directory exists
+        if (!fs.existsSync(distDir)) {
+          fs.mkdirSync(distDir, { recursive: true });
         }
+
+        // Read the images from the public directory
+        const imageFiles = fs.readdirSync(imagesDir).filter(file => /\.(png|jpg|jpeg)$/.test(file));
+
+        // Convert images to webp
+        await Promise.all(
+          imageFiles.map(async (file) => {
+            const filePath = path.join(imagesDir, file);
+            const outputFilePath = path.join(distDir, `${path.parse(file).name}.webp`);
+
+            const buffer = fs.readFileSync(filePath);
+            const webpBuffer = await imagemin.buffer(buffer, {
+              plugins: [imageminWebp({ quality: 80 })],
+            });
+
+            // Write the converted .webp file to the dist/images folder
+            fs.writeFileSync(outputFilePath, webpBuffer);
+          })
+        );
       },
     },
   ],
-};
-
-
+});
