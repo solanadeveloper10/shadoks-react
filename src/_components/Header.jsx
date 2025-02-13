@@ -1,4 +1,5 @@
 import { NavLink, Link } from "react-router";
+import { motion } from 'framer-motion';
 
 const Header = () => {
   return (
@@ -33,18 +34,74 @@ const Header = () => {
       </nav>
 
       <div className="socials">
-        <a href="#x" target="_blank" className="social-link">
+        <motion.a
+          href="#x"
+          target="_blank"
+          className="social-link"
+          whileHover={{
+            x: ["0", "3%", "-3%", "3%", "-3%", "0%"], // Infinite shake animation
+            transition: {
+              x: {
+                repeat: Infinity, // Make it repeat infinitely
+                duration: 0.15, // Duration of each shake step
+                ease: "easeInOut", // Smooth easing
+              }
+            }
+          }}
+        >
           <img src="/icons/x.png" alt="X icon." className="social-link-img" />
-        </a>
-        <a href="#twitter" target="_blank" className="social-link">
+        </motion.a>
+        <motion.a
+          href="#tg"
+          target="_blank"
+          className="social-link"
+          whileHover={{
+            x: ["0", "3%", "-3%", "3%", "-3%", "0%"], // Infinite shake animation
+            transition: {
+              x: {
+                repeat: Infinity, // Make it repeat infinitely
+                duration: 0.15, // Duration of each shake step
+                ease: "easeInOut", // Smooth easing
+              }
+            }
+          }}
+        >
           <img src="/icons/tg.png" alt="Telegram icon." className="social-link-img" />
-        </a>
-        <a href="#twitter" target="_blank" className="social-link">
-          <img src="/icons/tg.png" alt="Telegram icon." className="social-link-img" />
-        </a>
-        <a href="#twitter" target="_blank" className="social-link">
-          <img src="/icons/tg.png" alt="Telegram icon." className="social-link-img" />
-        </a>
+        </motion.a>
+        <motion.a
+          href="#x"
+          target="_blank"
+          className="social-link"
+          whileHover={{
+            x: ["0", "3%", "-3%", "3%", "-3%", "0%"], // Infinite shake animation
+            transition: {
+              x: {
+                repeat: Infinity, // Make it repeat infinitely
+                duration: 0.15, // Duration of each shake step
+                ease: "easeInOut", // Smooth easing
+              }
+            }
+          }}
+        >
+          <img src="/icons/dextools.png" alt="Dextools icon." className="social-link-img" />
+        </motion.a>
+        <motion.a
+          href="#x"
+          target="_blank"
+          className="social-link"
+          whileHover={{
+            x: ["0", "3%", "-3%", "3%", "-3%", "0%"], // Infinite shake animation
+            transition: {
+              x: {
+                repeat: Infinity, // Make it repeat infinitely
+                duration: 0.15, // Duration of each shake step
+                ease: "easeInOut", // Smooth easing
+              }
+            }
+          }}
+        >
+          <img src="/icons/dexscreener.png" alt="Dexscreener icon." className="social-link-img" />
+        </motion.a>
       </div>
     </header>
   )
