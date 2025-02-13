@@ -8,6 +8,7 @@ import path from 'path';
 export default defineConfig({
   plugins: [
     react(),
+    // Custom plugin to convert all images to .webp on build
     {
       name: 'webp-conversion',
       apply: 'build',

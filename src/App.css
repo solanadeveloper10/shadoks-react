@@ -1,0 +1,105 @@
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  /* Default max width */
+  margin: 0 auto;
+  padding: 0 16px;
+  /* Some padding for small screens */
+
+  /* Large screens (desktops)
+  @media (min-width: 1200px) {
+    max-width: 1140px;
+  } */
+
+  /* Medium screens (tablets) */
+  @media (max-width: 1199.98px) {
+    max-width: 960px;
+  }
+
+  /* Small screens (landscape phones) */
+  @media (max-width: 991px) {
+    max-width: 720px;
+  }
+
+  /* Extra small screens (portrait phones) */
+  @media (max-width: 767px) {
+    max-width: 540px;
+    padding: 0 12px;
+  }
+
+  /* Very small screens */
+  @media (max-width: 480px) {
+    max-width: 100%;
+    padding: 0 8px;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 36px;
+
+  height: 140px;
+
+  padding: 10px 0;
+
+  font-size: 24px;
+}
+
+.header-logo-container {
+  display: flex;
+  gap: 16px;
+
+  align-items: center;
+
+  height: 80%;
+}
+
+.header-logo-img {
+  max-height: 100%;
+  /* Ensures it never overflows the header */
+  width: auto;
+  /* Maintains aspect ratio */
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.nav-link {}
+
+.nav-link:hover {
+  color: #17A1FF;
+}
+
+.nav-link.active {
+  display: inline-block;
+  color: #17A1FF;
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.social-link-img {
+  max-height: 75px;
+  width: auto;
+}
